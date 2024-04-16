@@ -1689,26 +1689,25 @@ func (s *MarginAccountAllOrderService) Do(ctx context.Context, opts ...RequestOp
 }
 
 // MarginAccountAllOrderResponse define margin account all order response
-type MarginAccountAllOrderResponse struct {
-	Orders []struct {
-		ClientOrderId      string `json:"clientOrderId"`
-		CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
-		ExecutedQty        string `json:"executedQty"`
-		IcebergQty         string `json:"icebergQty"`
-		IsWorking          bool   `json:"isWorking"`
-		OrderId            int    `json:"orderId"`
-		OrigQty            string `json:"origQty"`
-		Price              string `json:"price"`
-		Side               string `json:"side"`
-		Status             string `json:"status"`
-		StopPrice          string `json:"stopPrice"`
-		Symbol             string `json:"symbol"`
-		IsIsolated         bool   `json:"isIsolated"`
-		Time               uint64 `json:"time"`
-		TimeInForce        string `json:"timeInForce"`
-		OrderType          string `json:"type"`
-		UpdateTime         uint64 `json:"updateTime"`
-	} `json:"orders"`
+type MarginAccountAllOrderResponse []*MarginAccountAllOrderResponseOrder
+type MarginAccountAllOrderResponseOrder struct {
+	ClientOrderId      string `json:"clientOrderId"`
+	CumulativeQuoteQty string `json:"cumulativeQuoteQty"`
+	ExecutedQty        string `json:"executedQty"`
+	IcebergQty         string `json:"icebergQty"`
+	IsWorking          bool   `json:"isWorking"`
+	OrderId            int    `json:"orderId"`
+	OrigQty            string `json:"origQty"`
+	Price              string `json:"price"`
+	Side               string `json:"side"`
+	Status             string `json:"status"`
+	StopPrice          string `json:"stopPrice"`
+	Symbol             string `json:"symbol"`
+	IsIsolated         bool   `json:"isIsolated"`
+	Time               uint64 `json:"time"`
+	TimeInForce        string `json:"timeInForce"`
+	OrderType          string `json:"type"`
+	UpdateTime         uint64 `json:"updateTime"`
 }
 
 // Margin Account New OCO (TRADE) API Endpoint
