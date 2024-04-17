@@ -36,7 +36,11 @@ func (r *request) addParam(key string, value interface{}) *request {
 	if r.query == nil {
 		r.query = url.Values{}
 	}
-	r.query.Add(key, fmt.Sprintf("%v", value))
+	v := reflect.ValueOf(value)
+	if v.Kind() == reflect.Ptr {
+		v = v.Elem()
+	}
+	r.query.Add(key, fmt.Sprintf("%v", v))
 	return r
 }
 
@@ -49,7 +53,7 @@ func (r *request) setParam(key string, value interface{}) *request {
 	if v.Kind() == reflect.Ptr {
 		v = v.Elem()
 	}
-	r.query.Set(key, fmt.Sprintf("%v", value))
+	r.query.Set(key, fmt.Sprintf("%v", v))
 	return r
 }
 
